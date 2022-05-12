@@ -1,0 +1,48 @@
+create database reactJsDB;
+
+use reactJsDB;
+
+create table tipoUsuario(
+    id int(11) primary key auto_increment not null,
+    tipo varchar(20)
+);
+
+create table usuario(
+    id int(11) primary key auto_increment not null,
+    nome varchar(22),
+    email varchar(250),
+    senha varchar(255),
+    fotoPerfil varchar(250),
+    comentarios int(11) default 0,
+    tipoUsuario int(11) default 2,
+    nomeUnico varchar(250),
+    dataRegistro datetime default current_timestamp
+);
+
+create table posts(
+	id int(11) not null auto_increment primary key,
+    titulo varchar(100),
+    conteudo text,
+    mime varchar(15),
+    arquivo varchar(255),
+    likesRecebidos int(11) default 0,
+    comentarios int(11) default 0,
+    dataCriacao datetime default current_timestamp,
+    postadoPor int(11),
+    foreign key post_por_fk(postadoPor) references usuario(id)
+);
+
+create table comentarios(
+	id int(11) not null auto_increment primary key,
+    comentario text,
+    dataComentario datetime default current_timestamp,
+    noPost int(11),
+    postadoPor int(11),
+    foreign key com_noPos(noPost) references posts(id),
+    foreign key com_postPor(postadoPor) references usuario(id)
+);
+
+insert into tipoUsuario(id, tipo) values(1,'administrador');
+insert into tipoUsuario(id, tipo) values(2,'usuario');
+
+insert into usuario(nome,email,senha,tipoUsuario,nomeUnico) values('admin','admin@admin.com','admin',1,'**admin**');

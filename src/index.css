@@ -1,13 +1,238 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+    margin: 0;
+    box-sizing: border-box;
+    
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{ background-color: #ECEFF1;}
+
+.mensagemErro,
+.mensagemSucesso{ 
+    color: #F44336;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.mensagemSucesso{ color: #81C784;}
+
+.invisibleInput{
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    color: #78909C;
+}
+
+.formPadrao{ 
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 20%;
+    width: 60%;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 7px;
+    z-index: 100;
+}
+.formRegistro{ min-height: 500px;}
+.formLogin{ min-height: 310px;}
+.formPost{
+    top:20px;
+    min-height: 600px;
+}
+
+.fundoOpaco,
+.fundoOpacoMessErro{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: .6;
+    z-index: 99;
+    display: none;
+}
+
+.fundoOpacoMessErro{ z-index: 110;}
+
+.botaoCriarPost{
+    position: fixed;
+    left: 1%;
+    top: 70px;
+}
+.botaoDeletarPost{
+    position: absolute;
+    right: 14%;
+    bottom: -2%;
+}
+
+.botaoFormularioPadrao{
+    position: absolute;
+    bottom: 1%;
+}
+.botaoEnviar{ left: 1%;}
+.botaoCancelar{ right: 1%;}
+
+.previsualizacaoMidia{
+    height: 180px;
+    width: 80%;
+    margin: 10px 0 10px 10%;
+    border: 1px solid #CFD8DC;
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+}
+.previsualizacaoMidia #prevMidia{ max-height: 179px;}
+
+.ExibirPosts{
+    margin: 10px 0 0 15%;
+    width: 60%;
+}
+
+.postPadrao{
+    position: relative;
+    width: 80%;
+    margin-bottom: 15px;
+    padding: 10px;
+    min-height: 250px;
+}
+
+.postPadrao .arquivoDiv{
+    max-height: 260px;
+    overflow: hidden;
+}
+
+.postPadrao .conteudoDiv{
+    max-height: 150px;
+    overflow: hidden;
+}
+
+.postPadrao img{ max-width: 95%;}
+.postPadrao ul{ 
+    list-style: none;
+    bottom: 1%;
+}
+.postPadrao ul li{
+    display: inline;
+    margin-right: 7%;
+}
+
+.ExibirPost{
+    display: none;
+    position: fixed;
+    top: 2.5%;
+    left: 2.5%;
+    height: 95vh;
+    width: 95%;
+    overflow-y: scroll;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    z-index: 100;
+}
+.ExibirPost .botaoFechar{
+    position: fixed;
+    right: 1%;
+    top: 1%;
+}
+.ExibirPost .postTitulo{
+    text-transform: capitalize;
+    text-align: center;
+    background-color: #D1C4E9;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    color: #fff;
+} 
+.ExibirPost img{ 
+    max-width: 80%;
+    margin: 2% 0 2% 5%;
+    border-radius: 10px;
+}
+.ExibirPost .postConteudo{
+    width: 80%;
+    margin: 15px 0 30px 10%;
+}
+
+
+.divMensagemErro{
+    position: fixed;
+    z-index: 200;
+    top: 40%;
+    width: 40%;
+    height: 80px;
+    left: 30%;
+    background-color: #fff;
+    border: 1px solid #DCDCDC;
+    border-radius: 6px;
+    display: none;
+    padding: 6px;
+}
+.divMensagemErro button{
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+}
+
+.cometarioPost{
+    width: 90%;
+    margin: 1% 0 0 5%;
+    border: 1px solid #B0BEC5;
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 135px;
+    position: relative;
+}
+.cometarioPost .informacoesUsuario{
+    float: left;
+    width: 20%;
+    border-right: 1px solid #B0BEC5;
+    
+}
+.cometarioPost .informacoesUsuario h6{ 
+    text-transform: capitalize;
+    margin: 0 0 0 12px;
+}
+.cometarioPost .informacoesUsuario .fotoPerfilCometario img{
+    height: 75px;
+}
+.cometarioPost .comentarioConteudo{
+    float: right;
+    width: 79%;
+}
+.cometarioPost .comentarioConteudo small{
+    position: absolute;
+    right: 2%;
+    bottom: 1%;
+}
+
+.Perfil{
+    width: 80%;
+    height: 90vh;
+    background-color: #fff;
+    border: 1px solid #DCDC;
+    position: fixed;
+    top: 5%;
+    left: 10%;
+    border-radius: 6px;
+    display: none;
+    z-index: 100;
+    padding: 10px;
+}
+.Perfil .botaoFecharPerfil{
+    position: absolute;
+    right: -30px;
+    top: -10px;
+}
+.Perfil .fotoUsuario{
+    float: left;
+    margin: 15px 5% 0 0;
+}
+.Perfil .fotoUsuario .imagemDePerfil{
+    max-width: 420px;
+    max-height: 420px;
+    min-width: 250px;
+    min-height: 250px;
+}
+.Perfil .descricaoUsuario{
+    margin-top: 10%;
 }
